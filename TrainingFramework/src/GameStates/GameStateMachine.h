@@ -3,6 +3,7 @@
 #include "GameConfig.h"
 #include <list>
 
+//quan ly chung cac state
 class GameStateBase;
 
 enum StateTypes

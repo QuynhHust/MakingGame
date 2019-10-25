@@ -1,1 +1,49 @@
-﻿  TrainingFramework.vcxproj -> D:\documents\making_game\Programming_lesson_06\\BIN-AMD\TrainingFramework.exe
+﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  Application.cpp
+  Generating Code...
+  Compiling...
+  GameStatebase.cpp
+  GameStateMachine.cpp
+  GSPlay.cpp
+d:\documents\making_game\programming_lesson_06\trainingframework\src\gamestates\gsplay.cpp(34): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\memory(1801): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=double
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\memory(1866): note: see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<std::shared_ptr<Shaders>&,std::shared_ptr<Font>&,const char(&)[10],TEXT_COLOR,double>(std::shared_ptr<Shaders> &,std::shared_ptr<Font> &,const char (&)[10],TEXT_COLOR &&,double &&)' being compiled
+          with
+          [
+              _Ty=Text
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\memory(1866): note: see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<std::shared_ptr<Shaders>&,std::shared_ptr<Font>&,const char(&)[10],TEXT_COLOR,double>(std::shared_ptr<Shaders> &,std::shared_ptr<Font> &,const char (&)[10],TEXT_COLOR &&,double &&)' being compiled
+          with
+          [
+              _Ty=Text
+          ]
+  d:\documents\making_game\programming_lesson_06\trainingframework\src\gamestates\gsplay.cpp(41): note: see reference to function template instantiation 'std::shared_ptr<Text> std::make_shared<Text,std::shared_ptr<Shaders>&,std::shared_ptr<Font>&,const char(&)[10],TEXT_COLOR,double>(std::shared_ptr<Shaders> &,std::shared_ptr<Font> &,const char (&)[10],TEXT_COLOR &&,double &&)' being compiled
+  GSMenu.cpp
+d:\documents\making_game\programming_lesson_06\trainingframework\src\gamestates\gsmenu.cpp(26): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+d:\documents\making_game\programming_lesson_06\trainingframework\src\gamestates\gsmenu.cpp(32): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+d:\documents\making_game\programming_lesson_06\trainingframework\src\gamestates\gsmenu.cpp(42): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+d:\documents\making_game\programming_lesson_06\trainingframework\src\gamestates\gsmenu.cpp(54): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\memory(1801): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=double
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\memory(1866): note: see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<std::shared_ptr<Shaders>&,std::shared_ptr<Font>&,const char(&)[12],TEXT_COLOR,double>(std::shared_ptr<Shaders> &,std::shared_ptr<Font> &,const char (&)[12],TEXT_COLOR &&,double &&)' being compiled
+          with
+          [
+              _Ty=Text
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\memory(1866): note: see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<std::shared_ptr<Shaders>&,std::shared_ptr<Font>&,const char(&)[12],TEXT_COLOR,double>(std::shared_ptr<Shaders> &,std::shared_ptr<Font> &,const char (&)[12],TEXT_COLOR &&,double &&)' being compiled
+          with
+          [
+              _Ty=Text
+          ]
+  d:\documents\making_game\programming_lesson_06\trainingframework\src\gamestates\gsmenu.cpp(53): note: see reference to function template instantiation 'std::shared_ptr<Text> std::make_shared<Text,std::shared_ptr<Shaders>&,std::shared_ptr<Font>&,const char(&)[12],TEXT_COLOR,double>(std::shared_ptr<Shaders> &,std::shared_ptr<Font> &,const char (&)[12],TEXT_COLOR &&,double &&)' being compiled
+  GSIntro.cpp
+d:\documents\making_game\programming_lesson_06\trainingframework\src\gamestates\gsintro.cpp(26): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+  Generating Code...
+  TrainingFramework.vcxproj -> D:\documents\making_game\Programming_lesson_06\\BIN-AMD\TrainingFramework.exe
