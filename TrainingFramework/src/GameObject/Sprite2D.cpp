@@ -24,7 +24,6 @@ Sprite2D::Sprite2D(std::shared_ptr<Models> model, std::shared_ptr<Shaders> shade
 	m_pShader = shader;
 	m_pCamera = nullptr;
 	m_pTexture = texture;
-
 	m_Vec3Position = Vector3(0, 0, 0);
 	m_iHeight = 50;
 	m_iWidth = 100;

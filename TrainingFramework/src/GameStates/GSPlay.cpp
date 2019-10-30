@@ -8,6 +8,7 @@
 #include "Sprite2D.h"
 #include "Sprite3D.h"
 #include "Text.h"
+#include "SpriteAnimation.h"
 
 extern int screenWidth; //need get on Graphic engine
 extern int screenHeight; //need get on Graphic engine
@@ -26,7 +27,7 @@ GSPlay::~GSPlay()
 void GSPlay::Init()
 {
 	auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D");
-	auto texture = ResourceManagers::GetInstance()->GetTexture("bg_play");
+	auto texture = ResourceManagers::GetInstance()->GetTexture("BG");
 
 	//BackGround
 	auto shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
@@ -47,6 +48,11 @@ void GSPlay::Init()
 	m_Character = std::make_shared<Sprite2D>(model, shader, texture);
 	m_Character->Set2DPosition(40, 100);
 	m_Character->SetSize(80, 60);
+
+	//animation coin
+	shader = ResourceManagers::GetInstance()->GetShader("Amination");
+	texture = ResourceManagers::GetInstance()->GetTexture("coin1");
+	std::shared_ptr<SpriteAmination>
 }
 
 void GSPlay::Exit()
@@ -73,6 +79,7 @@ void GSPlay::HandleEvents()
 
 void GSPlay::HandleKeyEvents(int key, bool bIsPressed)
 {
+	//switch...
 	
 }
 
@@ -82,6 +89,7 @@ void GSPlay::HandleTouchEvents(int x, int y, bool bIsPressed)
 
 void GSPlay::Update(float deltaTime)
 {
+	
 }
 
 void GSPlay::Draw()
