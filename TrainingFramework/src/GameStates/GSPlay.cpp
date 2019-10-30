@@ -40,6 +40,13 @@ void GSPlay::Init()
 	std::shared_ptr<Font> font = ResourceManagers::GetInstance()->GetFont("arialbd");
 	m_score = std::make_shared< Text>(shader, font, "score: 10", TEXT_COLOR::RED, 1.0);
 	m_score->Set2DPosition(Vector2(5, 25));
+
+	//main character
+	texture = ResourceManagers::GetInstance()->GetTexture("Fly");
+	shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
+	m_Character = std::make_shared<Sprite2D>(model, shader, texture);
+	m_Character->Set2DPosition(40, 100);
+	m_Character->SetSize(80, 60);
 }
 
 void GSPlay::Exit()
@@ -81,6 +88,8 @@ void GSPlay::Draw()
 {
 	m_BackGround->Draw();
 	m_score->Draw();
+	m_Character->Draw();
+	
 }
 
 void GSPlay::SetNewPostionForBullet()
