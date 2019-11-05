@@ -1,9 +1,12 @@
 #pragma once
-#include "gamestatebase.h"
+#include "GameStatebase.h"
 
 class Sprite2D;
 class Sprite3D;
 class Text;
+class SpriteAnimation;
+class MainCharacter;
+class Bullet;
 
 class GSPlay :
 	public GameStateBase
@@ -32,7 +35,9 @@ private:
 
 	std::shared_ptr<Sprite2D> m_BackGround;
 	std::shared_ptr<Text>  m_score;
-	std::shared_ptr<Sprite2D> m_Character;
+	std::vector<std::shared_ptr<SpriteAnimation>> m_listAnimation;
+	std::shared_ptr<MainCharacter> m_Character;
+	std::shared_ptr<Bullet> m_Bullet;
 
 };
 

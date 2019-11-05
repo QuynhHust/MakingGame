@@ -1,3 +1,10 @@
 ﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  GSPlay.cpp
-d:\documents\making_game\programming_lesson_06\trainingframework\src\gamestates\gsplay.cpp(11): fatal error C1083: Cannot open include file: 'SpriteAnimation.h': No such file or directory
+  MainCharacter.cpp
+  Bullet.cpp
+  Generating Code...
+Bullet.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+GSPlay.obj : error LNK2005: "public: __thiscall Bullet::Bullet(class std::shared_ptr<class Models>,class std::shared_ptr<class Shaders>,class std::shared_ptr<class Texture>)" (??0Bullet@@QAE@V?$shared_ptr@VModels@@@std@@V?$shared_ptr@VShaders@@@2@V?$shared_ptr@VTexture@@@2@@Z) already defined in Bullet.obj
+GSPlay.obj : error LNK2005: "public: virtual __thiscall Bullet::~Bullet(void)" (??1Bullet@@UAE@XZ) already defined in Bullet.obj
+GSPlay.obj : error LNK2005: "public: virtual void __thiscall Bullet::Update(float)" (?Update@Bullet@@UAEXM@Z) already defined in Bullet.obj
+GSPlay.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall Bullet::Init(void)" (?Init@Bullet@@UAEXXZ)
+D:\documents\making_game\Programming_lesson_06\\BIN-Nvidia\TrainingFramework.exe : fatal error LNK1120: 1 unresolved externals

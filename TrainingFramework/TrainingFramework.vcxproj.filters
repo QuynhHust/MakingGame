@@ -69,10 +69,13 @@
     <ClCompile Include="src\GameObject\GameButton.cpp">
       <Filter>TrainingFramework\src\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="MainPlane.cpp">
+    <ClCompile Include="SpriteAnimation.cpp">
       <Filter>TrainingFramework\src\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteAnimation.cpp">
+    <ClCompile Include="MainCharacter.cpp">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
       <Filter>TrainingFramework\src\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
@@ -134,10 +137,13 @@
     <ClInclude Include="src\GameObject\GameButton.h">
       <Filter>TrainingFramework\src\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="MainPlane.h">
+    <ClInclude Include="SpriteAnimation.h">
       <Filter>TrainingFramework\src\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteAnimation.h">
+    <ClInclude Include="MainCharacter.h">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
       <Filter>TrainingFramework\src\GameObject</Filter>
     </ClInclude>
   </ItemGroup>

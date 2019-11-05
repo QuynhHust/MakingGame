@@ -260,7 +260,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MainPlane.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="MainCharacter.cpp" />
     <ClCompile Include="SpriteAnimation.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\GameManager\ResourceManagers.cpp" />
@@ -281,7 +282,8 @@
     <ClCompile Include="src\TrainingFramework.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MainPlane.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="MainCharacter.h" />
     <ClInclude Include="SpriteAnimation.h" />
     <ClInclude Include="src\Application.h" />
     <ClInclude Include="src\GameConfig.h" />
