@@ -10,7 +10,7 @@
 #include "Text.h"
 #include"SpriteAnimation.h"
 #include"MainCharacter.h"
-#include"Bullet.cpp"
+#include"Bullets.h"
 
 
 //new
@@ -20,6 +20,10 @@ const Vector2 MOVE_UP = Vector2(0, -15);
 const Vector2 MOVE_DOWN = Vector2(0, 15);
 const Vector2 MOVE_RIGHT = Vector2(15, 0);
 const Vector2 MOVE_LEFT = Vector2(-15, 0);
+
+//auto modelBullets = ResourceManagers::GetInstance()->GetModel("Sprite2D");
+//auto textureBullets = ResourceManagers::GetInstance()->GetTexture("Bullet");
+//auto shaderBullets = ResourceManagers::GetInstance()->GetShader("TextureShader");
 
 
 GSPlay::GSPlay()
@@ -57,13 +61,6 @@ void GSPlay::Init()
 	m_Character->Set2DPosition(m_Character->Get2DPosition());
 	m_Character->SetSize(100, 70);
 
-	//Bullet
-	texture = ResourceManagers::GetInstance()->GetTexture("Bullet");
-	shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
-	m_Bullet = std::make_shared<Bullet>(model, shader, texture);
-	m_Bullet->Set2DPosition(500, 100);
-	m_Bullet->SetSize(15, 10);
-
 	//animation coin
 	texture = ResourceManagers::GetInstance()->GetTexture("coin1");
 	shader = ResourceManagers::GetInstance()->GetShader("Animation");
@@ -71,6 +68,8 @@ void GSPlay::Init()
 	obj->Set2DPosition(150, 30);
 	obj->SetSize(52, 52);
 	m_listAnimation.push_back(obj);
+	// Bullets
+	MakeBullets();
 }
 
 void GSPlay::Exit()
@@ -120,6 +119,18 @@ void GSPlay::HandleKeyEvents(int key, bool bIsPressed)
 		{
 			m_Character->SetMove(MOVE_LEFT);
 		}break;
+		case VK_SPACE:
+		{
+			if (m_listBullets.empty()==false && m_listBullets.back()->GetIsMove() == false)
+			{
+				m_TempBullet = m_listBullets.back();
+				m_TempBullet->SetIsMove(true);
+				m_TempBullet->StartMove(m_Character->Get2DPosition(), Vector2(10.0f, 0.0f));
+				m_listBullets.pop_back();
+				m_listBullets.insert(m_listBullets.begin(), m_TempBullet);
+				printf("heelllo");
+			}
+		}break;
 		
 		}
 		m_Character->Update(0.01f);
@@ -136,6 +147,14 @@ void GSPlay::Update(float deltaTime)
 	{
 		obj->Update(deltaTime);
 	}
+	for (int i = 0;i<m_listBullets.size();i++)
+	{
+		if (m_listBullets.at(i)->GetIsMove() == true)
+		{
+			m_listBullets.at(i)->Update(deltaTime);
+		}
+	}
+	MakeBullets();
 }
 
 void GSPlay::Draw()
@@ -147,11 +166,22 @@ void GSPlay::Draw()
 	}
 	m_score->Draw();
 	m_Character->Draw();
-	m_Bullet->Draw();
 	
 }
 
 void GSPlay::SetNewPostionForBullet()
 {
 
+}
+void GSPlay::MakeBullets()
+{
+	if (m_listBullets.empty() == true || m_listBullets.back()->GetIsMove() == true)
+	{
+		auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D");
+		auto texture = ResourceManagers::GetInstance()->GetTexture("Bullet");
+		auto shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
+		std::shared_ptr<Bullets> bul = std::make_shared<Bullets>(model, shader, texture);
+		bul->SetSize(15, 10);
+		m_listBullets.push_back(bul);
+	}
 }

@@ -1,10 +1,21 @@
 ﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  MainCharacter.cpp
-  Bullet.cpp
-  Generating Code...
-Bullet.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
-GSPlay.obj : error LNK2005: "public: __thiscall Bullet::Bullet(class std::shared_ptr<class Models>,class std::shared_ptr<class Shaders>,class std::shared_ptr<class Texture>)" (??0Bullet@@QAE@V?$shared_ptr@VModels@@@std@@V?$shared_ptr@VShaders@@@2@V?$shared_ptr@VTexture@@@2@@Z) already defined in Bullet.obj
-GSPlay.obj : error LNK2005: "public: virtual __thiscall Bullet::~Bullet(void)" (??1Bullet@@UAE@XZ) already defined in Bullet.obj
-GSPlay.obj : error LNK2005: "public: virtual void __thiscall Bullet::Update(float)" (?Update@Bullet@@UAEXM@Z) already defined in Bullet.obj
-GSPlay.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall Bullet::Init(void)" (?Init@Bullet@@UAEXXZ)
-D:\documents\making_game\Programming_lesson_06\\BIN-Nvidia\TrainingFramework.exe : fatal error LNK1120: 1 unresolved externals
+  GSPlay.cpp
+d:\documents\making_game\programming_lesson_06\trainingframework\src\gamestates\gsplay.cpp(47): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+d:\documents\making_game\programming_lesson_06\trainingframework\src\gamestates\gsplay.cpp(150): warning C4018: '<': signed/unsigned mismatch
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\memory(1801): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=double
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\memory(1866): note: see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<std::shared_ptr<Shaders>&,std::shared_ptr<Font>&,const char(&)[10],TEXT_COLOR,double>(std::shared_ptr<Shaders> &,std::shared_ptr<Font> &,const char (&)[10],TEXT_COLOR &&,double &&)' being compiled
+          with
+          [
+              _Ty=Text
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\memory(1866): note: see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<std::shared_ptr<Shaders>&,std::shared_ptr<Font>&,const char(&)[10],TEXT_COLOR,double>(std::shared_ptr<Shaders> &,std::shared_ptr<Font> &,const char (&)[10],TEXT_COLOR &&,double &&)' being compiled
+          with
+          [
+              _Ty=Text
+          ]
+  d:\documents\making_game\programming_lesson_06\trainingframework\src\gamestates\gsplay.cpp(54): note: see reference to function template instantiation 'std::shared_ptr<Text> std::make_shared<Text,std::shared_ptr<Shaders>&,std::shared_ptr<Font>&,const char(&)[10],TEXT_COLOR,double>(std::shared_ptr<Shaders> &,std::shared_ptr<Font> &,const char (&)[10],TEXT_COLOR &&,double &&)' being compiled
+  TrainingFramework.vcxproj -> D:\documents\making_game\Programming_lesson_06\\BIN-Nvidia\TrainingFramework.exe

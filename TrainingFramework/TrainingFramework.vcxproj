@@ -260,7 +260,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Bullets.cpp" />
     <ClCompile Include="MainCharacter.cpp" />
     <ClCompile Include="SpriteAnimation.cpp" />
     <ClCompile Include="src\Application.cpp" />
@@ -282,7 +282,7 @@
     <ClCompile Include="src\TrainingFramework.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Bullets.h" />
     <ClInclude Include="MainCharacter.h" />
     <ClInclude Include="SpriteAnimation.h" />
     <ClInclude Include="src\Application.h" />

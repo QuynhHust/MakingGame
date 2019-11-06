@@ -35,12 +35,12 @@ void MainCharacter::Update(GLfloat deltatime) {
 	Set2DPosition(m_Vec2DPos);
 	Draw();
 	SetMove(Vector2(0, 0));
-	if (m_Vec2DPos.y <= 35.0f) { m_Vec2DPos.y = 35.0f; }
-	else if (m_Vec2DPos.y >= screenHeight - 35.0f) { m_Vec2DPos.y = screenHeight - 35.0f; }
-	else if (m_Vec2DPos.x <= 50.0f) { m_Vec2DPos.x = 50.0f; }
-	else if (m_Vec2DPos.x >= screenWidth - 50.0f) { m_Vec2DPos.x = screenWidth - 50.0f; }
+	if (m_Vec2DPos.y <= 35) { m_Vec2DPos.y = 35; }
+	else if (m_Vec2DPos.y >= screenHeight - 35) { m_Vec2DPos.y = screenHeight - 35; }
+	else if (m_Vec2DPos.x <= 50) { m_Vec2DPos.x = 50; }
+	else if (m_Vec2DPos.x >= screenWidth - 50) { m_Vec2DPos.x = screenWidth - 50; }
 }
-//void MainCharacter::SetBullet(std::shared_ptr<Bullet> bul)
+//void MainCharacter::ShootBullet(std::shared_ptr<Bullets> bul)
 //{
-//
+//	m_listBullet.push_back(bul);
 //}

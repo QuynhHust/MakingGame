@@ -6,7 +6,7 @@ class Sprite3D;
 class Text;
 class SpriteAnimation;
 class MainCharacter;
-class Bullet;
+class Bullets;
 
 class GSPlay :
 	public GameStateBase
@@ -27,8 +27,7 @@ public:
 	void HandleTouchEvents(int x, int y, bool bIsPressed);
 	void Update(float deltaTime);
 	void Draw();
-
-	
+	void MakeBullets();
 	void SetNewPostionForBullet();
 
 private:
@@ -37,7 +36,7 @@ private:
 	std::shared_ptr<Text>  m_score;
 	std::vector<std::shared_ptr<SpriteAnimation>> m_listAnimation;
 	std::shared_ptr<MainCharacter> m_Character;
-	std::shared_ptr<Bullet> m_Bullet;
-
+	std::vector<std::shared_ptr<Bullets>> m_listBullets;
+	std::shared_ptr<Bullets> m_TempBullet;
 };
 
