@@ -1,6 +1,5 @@
 #pragma once
 #include"Sprite2D.h"
-#include"Bullets.h"
 
 class MainCharacter : public Sprite2D
 {

@@ -34,6 +34,11 @@ void Mouse(ESContext* esContext, GLint x, GLint y, bool bbIsPresseded)
 	Application::GetInstance()->HandleTouchEvent(x, y, bbIsPresseded);
 }
 
+void MouseMove(ESContext* esContext, GLint x, GLint y)
+{
+	//printf("x , y: %d,%d \n", x, y);
+}
+
 void CleanUp()
 {
 	Application::GetInstance()->Exit();
@@ -53,13 +58,14 @@ GLint _tmain(GLint argc, _TCHAR* argv[])
 	esRegisterUpdateFunc(&esContext, Update);
 	esRegisterKeyFunc(&esContext, Key);
 	esRegisterMouseFunc(&esContext, Mouse);
+	esRegisterMouseMove(&esContext, MouseMove);
 	esMainLoop(&esContext);
 
 	//releasing OpenGL resources
 	CleanUp();
 
 	//identifying memory leaks
-	MemoryDump();
+	//MemoryDump();
 	//printf("Press any key...\n");
 	//_getch();
 

@@ -180,6 +180,11 @@ void ESUTIL_API esRegisterMouseFunc ( ESContext *esContext,
    esContext->mouseFunc = mouseFunc;
 }
 
+void ESUTIL_API esRegisterMouseMove(ESContext *esContext,
+	void (ESCALLBACK *mouseMove) (ESContext*, int, int))
+{
+	esContext->mouseMove = mouseMove;
+}
 
 // esLogMessage()
 //    Log an error message to the debug output for the platform

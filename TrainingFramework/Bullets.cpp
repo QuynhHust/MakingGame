@@ -13,6 +13,7 @@ Bullets::Bullets(std::shared_ptr<Models> model, std::shared_ptr<Shaders> shader,
 	m_IsMove = false;
 	m_BulletType = DEFAULT;
 	m_BulletDir = 0;
+	m_Vec2DPos = Vector2(-1, -1);
 
 	m_Vec3Position = Vector3(0, 0, 0);
 	m_iHeight = 50;
@@ -26,8 +27,11 @@ Bullets::~Bullets()
 
 void Bullets::Update(GLfloat time)
 {
-	m_Vec2DPos += m_move;
-	Set2DPosition(m_Vec2DPos);
-	Draw();
-	if (m_Vec2DPos.x <= 50|| m_Vec2DPos.x >= screenWidth - 50) { m_IsMove = false; }
+	if (m_IsMove == true)
+	{
+		m_Vec2DPos += Vector2(5.0f, 0.0f);
+		Set2DPosition(m_Vec2DPos);
+		if (m_Vec2DPos.x <= 50 || m_Vec2DPos.x >= screenWidth - 50) { m_IsMove = false; }
+	}
+	else Set2DPosition(-1, -1);
 }

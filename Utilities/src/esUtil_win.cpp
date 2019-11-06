@@ -67,6 +67,15 @@ LRESULT WINAPI ESWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 	}
 	break;
+	case WM_MOUSEMOVE:
+	{
+		ESContext* esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
+		POINT      point;
+		GetCursorPos(&point);
+		if (esContext && esContext->mouseMove)
+			esContext->mouseMove(esContext, (int)point.x - WDpoint.x, (int)point.y - WDpoint.y);
+	}
+	break;
 	case WM_MOVE:
 	{
 		WDpoint.x = (int)LOWORD(lParam);   // horizontal position 
@@ -150,9 +159,12 @@ void WinLoop(ESContext* esContext)
 	{
 		int gotMsg = (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE) != 0);
 		DWORD curTime = GetTickCount();
+		float deltaTime;
+		if (curTime - lastTime > 1.0f) deltaTime = 0.01f;
 		//deltaTime
-		float deltaTime = (float)(curTime - lastTime) / 1000.0f;
+		else deltaTime = (float)(curTime - lastTime) / 1000.0f;
 		lastTime = curTime;
+		
 
 		if (gotMsg)
 		{
@@ -171,6 +183,6 @@ void WinLoop(ESContext* esContext)
 
 		// Call update function if registered
 		if (esContext->updateFunc != NULL)
-			esContext->updateFunc(esContext, deltaTime);
+			esContext->updateFunc(esContext, deltaTime);	
 	}
 }

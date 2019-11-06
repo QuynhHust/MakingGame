@@ -29,6 +29,7 @@ public:
 	void Draw();
 	void MakeBullets();
 	void SetNewPostionForBullet();
+	bool IsListAvailability(std::vector<std::shared_ptr<Bullets>> list);
 
 private:
 

@@ -28,7 +28,7 @@ public:
 	bool GetIsMove() { return m_IsMove; }
 	void SetIsMove(bool b) { m_IsMove = b; }
 	
-	void StartMove(Vector2 vec2,Vector2 move) { Set2DPosition(vec2); m_move = move; }
+	void StartMove(Vector2 vec2) { Set2DPosition(vec2); }
 	void Update(GLfloat time) override;
 	
 };

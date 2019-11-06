@@ -12,7 +12,6 @@
 #include"MainCharacter.h"
 #include"Bullets.h"
 
-
 //new
 extern int screenWidth; //need get on Graphic engine
 extern int screenHeight; //need get on Graphic engine
@@ -20,10 +19,6 @@ const Vector2 MOVE_UP = Vector2(0, -15);
 const Vector2 MOVE_DOWN = Vector2(0, 15);
 const Vector2 MOVE_RIGHT = Vector2(15, 0);
 const Vector2 MOVE_LEFT = Vector2(-15, 0);
-
-//auto modelBullets = ResourceManagers::GetInstance()->GetModel("Sprite2D");
-//auto textureBullets = ResourceManagers::GetInstance()->GetTexture("Bullet");
-//auto shaderBullets = ResourceManagers::GetInstance()->GetShader("TextureShader");
 
 
 GSPlay::GSPlay()
@@ -53,11 +48,11 @@ void GSPlay::Init()
 	std::shared_ptr<Font> font = ResourceManagers::GetInstance()->GetFont("arialbd");
 	m_score = std::make_shared<Text>(shader, font, "score: 10", TEXT_COLOR::RED, 1.0);
 	m_score->Set2DPosition(Vector2(5, 25));
-	    
+
 	//main character
 	texture = ResourceManagers::GetInstance()->GetTexture("Fly");
-	shader  = ResourceManagers::GetInstance()->GetShader("TextureShader");
-	m_Character = std::make_shared<MainCharacter>(model,shader,texture);
+	shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
+	m_Character = std::make_shared<MainCharacter>(model, shader, texture);
 	m_Character->Set2DPosition(m_Character->Get2DPosition());
 	m_Character->SetSize(100, 70);
 
@@ -68,6 +63,7 @@ void GSPlay::Init()
 	obj->Set2DPosition(150, 30);
 	obj->SetSize(52, 52);
 	m_listAnimation.push_back(obj);
+
 	// Bullets
 	MakeBullets();
 }
@@ -114,31 +110,35 @@ void GSPlay::HandleKeyEvents(int key, bool bIsPressed)
 		case KEY_RIGHT:
 		{
 			m_Character->SetMove(MOVE_RIGHT);
-		}break;
+		}break;  
 		case KEY_LEFT:
 		{
 			m_Character->SetMove(MOVE_LEFT);
-		}break;
-		case VK_SPACE:
-		{
-			if (m_listBullets.empty()==false && m_listBullets.back()->GetIsMove() == false)
-			{
-				m_TempBullet = m_listBullets.back();
-				m_TempBullet->SetIsMove(true);
-				m_TempBullet->StartMove(m_Character->Get2DPosition(), Vector2(10.0f, 0.0f));
-				m_listBullets.pop_back();
-				m_listBullets.insert(m_listBullets.begin(), m_TempBullet);
-				printf("heelllo");
-			}
+			printf("left\n");
 		}break;
 		
+
 		}
 		m_Character->Update(0.01f);
 	}
+		
 }
 
 void GSPlay::HandleTouchEvents(int x, int y, bool bIsPressed)
 {
+	if(bIsPressed)
+	{
+		for (int i = 0; i < m_listBullets.size(); i++)
+		{
+			if (m_listBullets.at(i)->GetIsMove() == false)
+			{
+				m_listBullets.at(i)->SetIsMove(true);
+				m_listBullets.at(i)->StartMove(m_Character->Get2DPosition());
+				printf("chiu chiu\n"); break;
+			}
+		}
+		
+	}
 }
 
 void GSPlay::Update(float deltaTime)
@@ -147,12 +147,9 @@ void GSPlay::Update(float deltaTime)
 	{
 		obj->Update(deltaTime);
 	}
-	for (int i = 0;i<m_listBullets.size();i++)
+	for (int i = 0; i < m_listBullets.size(); i++)
 	{
-		if (m_listBullets.at(i)->GetIsMove() == true)
-		{
-			m_listBullets.at(i)->Update(deltaTime);
-		}
+		m_listBullets.at(i)->Update(deltaTime);
 	}
 	MakeBullets();
 }
@@ -164,9 +161,13 @@ void GSPlay::Draw()
 	{
 		obj->Draw();
 	}
+	for (auto bul : m_listBullets)
+	{
+		bul->Draw();
+	}
 	m_score->Draw();
 	m_Character->Draw();
-	
+
 }
 
 void GSPlay::SetNewPostionForBullet()
@@ -175,13 +176,26 @@ void GSPlay::SetNewPostionForBullet()
 }
 void GSPlay::MakeBullets()
 {
-	if (m_listBullets.empty() == true || m_listBullets.back()->GetIsMove() == true)
+	if(IsListAvailability(m_listBullets)==false)//neu listbull khong kha dung
 	{
 		auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D");
 		auto texture = ResourceManagers::GetInstance()->GetTexture("Bullet");
 		auto shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
 		std::shared_ptr<Bullets> bul = std::make_shared<Bullets>(model, shader, texture);
 		bul->SetSize(15, 10);
+		bul->Set2DPosition(-1, -1);
 		m_listBullets.push_back(bul);
+		printf("makebull\n");
 	}
+}
+bool GSPlay::IsListAvailability(std::vector<std::shared_ptr<Bullets>> list)
+{
+	for (int i = 0; i < list.size(); i++)
+	{
+		if (list.at(i)->GetIsMove() == false)
+		{
+			return true;// mot phan tu false
+		}
+	}
+	return false;// tat ca is true
 }
