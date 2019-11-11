@@ -4,7 +4,6 @@ class Bullets :public Sprite2D
 {
 
 private:
-	bool m_IsMove;
 	unsigned int m_BulletType;
 	unsigned int m_BulletDir;
 	Vector2 m_move;
@@ -24,11 +23,8 @@ public:
 		DEFAULT = 18,
 		LAZE = 19,
 	};
-
-	bool GetIsMove() { return m_IsMove; }
-	void SetIsMove(bool b) { m_IsMove = b; }
 	
-	void StartMove(Vector2 vec2) { Set2DPosition(vec2); }
+	void StartMove(Vector2 vec2 ) { Set2DPosition(vec2);}
 	void Update(GLfloat time) override;
 	
 };

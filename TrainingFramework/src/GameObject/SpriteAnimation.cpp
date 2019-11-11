@@ -29,6 +29,7 @@ SpriteAnimation::SpriteAnimation(std::shared_ptr<Models> model, std::shared_ptr<
 	m_frameTime = frameTime;
 	m_currentFrame = 0;
 	m_currentTime = 0.0f;
+	m_IsShow = false;
 
 	m_Vec3Position = Vector3(0, 0, 0);
 	m_iHeight = 50;

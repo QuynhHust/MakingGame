@@ -175,3 +175,32 @@ void Sprite2D::SetSize(GLint width, GLint height)
 	m_Vec3Scale = Vector3((float)m_iWidth / screenWidth, (float)m_iHeight / screenHeight, 1);
 	CaculateWorldMatrix();
 }
+bool Sprite2D::CheckColision(std::shared_ptr<Sprite2D> obj2)
+{
+	int x0 = m_Vec2DPos.x - m_iWidth / 2;
+	int y0 = m_Vec2DPos.y - m_iHeight / 2;
+	int x1 = m_Vec2DPos.x + m_iWidth / 2;
+	int y1 = m_Vec2DPos.y + m_iHeight / 2;
+	int a0 = obj2->m_Vec2DPos.x - obj2->m_iWidth / 2;
+	int b0 = obj2->m_Vec2DPos.y - obj2->m_iHeight / 2;
+	int a1 = obj2->m_Vec2DPos.x + obj2->m_iWidth / 2;
+	int b1 = obj2->m_Vec2DPos.y + obj2->m_iHeight / 2;
+
+	if ((a0 < x1&&x1 < a1)&&(b0<y1&&y1<b1))
+	{
+		return true;
+	}
+	else if ((a0 < x0&&x0 < a1) && (b0 < y1&&y1 < b1))
+	{
+		return true;
+	}
+	else if ((a0 < x1&&x1 < a1) && (b0 < y0&&y0 < b1))
+	{
+		return true;
+	}
+	else if ((a0 < x1&&x1 < a1) && (b0 < y1&&y1 < b1))
+	{
+		return true;
+	}
+	else return false;
+}

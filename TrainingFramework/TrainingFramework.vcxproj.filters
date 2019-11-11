@@ -24,30 +24,6 @@
     <ClCompile Include="src\TrainingFramework.cpp">
       <Filter>TrainingFramework\src</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObject\Sprite2D.cpp">
-      <Filter>TrainingFramework\src\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\Camera.cpp">
-      <Filter>TrainingFramework\src\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\Sprite3D.cpp">
-      <Filter>TrainingFramework\src\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\Models.cpp">
-      <Filter>TrainingFramework\src\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\Shaders.cpp">
-      <Filter>TrainingFramework\src\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\Texture.cpp">
-      <Filter>TrainingFramework\src\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\Text.cpp">
-      <Filter>TrainingFramework\src\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\Font.cpp">
-      <Filter>TrainingFramework\src\GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="src\GameStates\GameStatebase.cpp">
       <Filter>TrainingFramework\src\GameStates</Filter>
     </ClCompile>
@@ -66,16 +42,43 @@
     <ClCompile Include="src\GameManager\ResourceManagers.cpp">
       <Filter>TrainingFramework\src\GameManager</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameObject\Bullets.cpp">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Camera.cpp">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Font.cpp">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClCompile>
     <ClCompile Include="src\GameObject\GameButton.cpp">
       <Filter>TrainingFramework\src\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteAnimation.cpp">
+    <ClCompile Include="src\GameObject\MainCharacter.cpp">
       <Filter>TrainingFramework\src\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="MainCharacter.cpp">
+    <ClCompile Include="src\GameObject\Models.cpp">
       <Filter>TrainingFramework\src\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Bullets.cpp">
+    <ClCompile Include="src\GameObject\Shaders.cpp">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Sprite2D.cpp">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Sprite3D.cpp">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\SpriteAnimation.cpp">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Text.cpp">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Texture.cpp">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\ThreatPlane.cpp">
       <Filter>TrainingFramework\src\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
@@ -88,33 +91,6 @@
     </ClInclude>
     <ClInclude Include="src\GameManager\Singleton.h">
       <Filter>TrainingFramework\src\GameManager</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObject\BaseObject.h">
-      <Filter>TrainingFramework\src\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObject\Sprite2D.h">
-      <Filter>TrainingFramework\src\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObject\Camera.h">
-      <Filter>TrainingFramework\src\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObject\Sprite3D.h">
-      <Filter>TrainingFramework\src\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObject\Models.h">
-      <Filter>TrainingFramework\src\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObject\Shaders.h">
-      <Filter>TrainingFramework\src\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObject\Texture.h">
-      <Filter>TrainingFramework\src\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObject\Text.h">
-      <Filter>TrainingFramework\src\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObject\Font.h">
-      <Filter>TrainingFramework\src\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="src\GameStates\GameStatebase.h">
       <Filter>TrainingFramework\src\GameStates</Filter>
@@ -134,16 +110,46 @@
     <ClInclude Include="src\GameManager\ResourceManagers.h">
       <Filter>TrainingFramework\src\GameManager</Filter>
     </ClInclude>
+    <ClInclude Include="src\GameObject\BaseObject.h">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Bullets.h">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Camera.h">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Font.h">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClInclude>
     <ClInclude Include="src\GameObject\GameButton.h">
       <Filter>TrainingFramework\src\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteAnimation.h">
+    <ClInclude Include="src\GameObject\MainCharacter.h">
       <Filter>TrainingFramework\src\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="MainCharacter.h">
+    <ClInclude Include="src\GameObject\Models.h">
       <Filter>TrainingFramework\src\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="Bullets.h">
+    <ClInclude Include="src\GameObject\Shaders.h">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Sprite2D.h">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Sprite3D.h">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\SpriteAnimation.h">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Text.h">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Texture.h">
+      <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\ThreatPlane.h">
       <Filter>TrainingFramework\src\GameObject</Filter>
     </ClInclude>
   </ItemGroup>

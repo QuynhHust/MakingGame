@@ -7,6 +7,7 @@ private:
 	std::string		m_Text;
 	void			CaculateWorldMatrix();
 protected:
+	bool m_IsLive;
 	Vector2			m_Vec2DPos;
 	GLint			m_iHeight;
 	GLint			m_iWidth;
@@ -29,6 +30,10 @@ public:
 
 	Vector2		Get2DPosition();
 	void		SetSize(GLint width, GLint height);
+	bool GetIsLive() { return m_IsLive; }
+	void SetIsLive(bool b) { m_IsLive = b; }
+
+	bool CheckColision(std::shared_ptr<Sprite2D> obj2);
 
 };
 

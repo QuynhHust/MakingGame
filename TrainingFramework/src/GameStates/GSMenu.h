@@ -28,7 +28,6 @@ private:
 	std::shared_ptr<Sprite2D> m_BackGround;
 	std::vector<std::shared_ptr<SpriteAmination>> m_listAmination;
 	std::list<std::shared_ptr<GameButton>>	m_listButton;
-	std::shared_ptr<Text>  m_Text_gameName;
 
 };
 

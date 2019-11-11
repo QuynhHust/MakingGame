@@ -5,6 +5,8 @@
 #include "esUtil_win.h"
 #include "Math.h"
 #include "TGA.h"
+#include "soloud.h"
+#include "soloud_wav.h"
 //#include "MemoryOperators.h"
 #include "GameConfig.h"
 #include "Singleton.h"

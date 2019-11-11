@@ -45,13 +45,6 @@ void GSMenu::Init()
 		exit(0);
 		});
 	m_listButton.push_back(button);
-
-
-	//text game title
-	shader = ResourceManagers::GetInstance()->GetShader("TextShader");
-	std::shared_ptr<Font> font = ResourceManagers::GetInstance()->GetFont("arialbd");
-	m_Text_gameName = std::make_shared< Text>(shader, font, "SAMPLE NAME", TEXT_COLOR::GREEN, 1.0);
-	m_Text_gameName->Set2DPosition(Vector2(screenWidth / 2 - 80, 120));
 }
 
 void GSMenu::Exit()
@@ -105,5 +98,4 @@ void GSMenu::Draw()
 	{
 		it->Draw();
 	}
-	m_Text_gameName->Draw();
 }
