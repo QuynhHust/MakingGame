@@ -35,6 +35,7 @@ public:
 private:
 	int m_point = 0;
 	int m_CoutTime;
+	std::fstream m_FileScore;
 	std::shared_ptr<Sprite2D> m_BackGround;
 	std::shared_ptr<Sprite2D> m_BackGround2;
 	std::shared_ptr<Text>  m_score;

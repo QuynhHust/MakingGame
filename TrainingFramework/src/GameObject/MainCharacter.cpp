@@ -28,11 +28,12 @@ void MainCharacter::CharacterMove()
 	//
 }
 
-void MainCharacter::Update(GLfloat time) {
-	m_Vec2DPos += m_move*60*time;
-	Set2DPosition(m_Vec2DPos);
-	if (m_Vec2DPos.y <= 35) { m_Vec2DPos.y = 35; }
-	else if (m_Vec2DPos.y >= screenHeight - 35) { m_Vec2DPos.y = screenHeight - 35; }
-	else if (m_Vec2DPos.x <= 50) { m_Vec2DPos.x = 50; }
-	else if (m_Vec2DPos.x >= screenWidth - 50) { m_Vec2DPos.x = screenWidth - 50; }
+void MainCharacter::Update(GLfloat time) 
+{
+		m_Vec2DPos += m_move * 60 * time;
+		Set2DPosition(m_Vec2DPos);
+		if (m_Vec2DPos.y <= 35) { m_Vec2DPos.y = 35; }
+		else if (m_Vec2DPos.y >= screenHeight - 35) { m_Vec2DPos.y = screenHeight - 35; }
+		else if (m_Vec2DPos.x <= 50) { m_Vec2DPos.x = 50; }
+		else if (m_Vec2DPos.x >= screenWidth - 50) { m_Vec2DPos.x = screenWidth - 50; }
 }

@@ -17,6 +17,11 @@ GSEnd::~GSEnd()
 
 void GSEnd::Init()
 {
+	// mo file score.txt de lay point
+	std::fstream m_FileScore("score.txt", std::ios::in);
+	m_FileScore>>m_yourscore;
+
+
 	auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D");
 	auto texture = ResourceManagers::GetInstance()->GetTexture("BG");
 
@@ -45,6 +50,12 @@ void GSEnd::Init()
 		exit(0);
 	});
 	m_listButton.push_back(button);
+
+	// your point
+	shader = ResourceManagers::GetInstance()->GetShader("TextShader");
+	std::shared_ptr<Font> font = ResourceManagers::GetInstance()->GetFont("arialbd");
+	m_point = std::make_shared< Text>(shader, font,"Your Score: "+std::to_string(m_yourscore), TEXT_COLOR::RED, 2.0);
+	m_point->Set2DPosition(Vector2(screenWidth / 2 - 120, 120));
 }
 
 void GSEnd::Exit()
@@ -89,6 +100,7 @@ void GSEnd::Update(float deltaTime)
 	{
 		it->Update(deltaTime);
 	}
+	m_point->Update(deltaTime);
 }
 
 void GSEnd::Draw()
@@ -98,4 +110,5 @@ void GSEnd::Draw()
 	{
 		it->Draw();
 	}
+	m_point->Draw();
 }

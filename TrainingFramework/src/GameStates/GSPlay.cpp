@@ -101,6 +101,13 @@ void GSPlay::Init()
 	m_wav.load("shot.wav");
 	m_soloud1.init();
 	m_explosionWav.load("colision.wav");
+
+	//open file luu tru score
+	m_FileScore.open("score.txt", std::ios::out);
+	if (m_FileScore.fail() == true)
+	{
+		printf("cannot open file!!!\n");
+	}
 }
 
 void GSPlay::Exit()
@@ -203,11 +210,25 @@ void GSPlay::Update(float deltaTime)
 	}
 	MakeMyBullets();
 	MakeThreatBullets();
-	m_Character->Update(deltaTime);
+	if (m_Character->GetIsLive() == true)
+	{
+		m_Character->Update(deltaTime);
+	}
+	else
+	{
+		m_FileScore<<m_point;
+		m_FileScore.close();
+		GameStateMachine::GetInstance()->ChangeState(StateTypes::STATE_End);
+		
+	}
 	for (int i = 0;i<m_listThreatOne.size();i++)
 	{
 		m_listThreatOne[i]->Update(deltaTime);
 		m_listThreatOne[i]->SetRandPos(i);
+		if (m_listThreatOne[i]->CheckColision(m_Character) == true)
+		{
+			m_Character->SetIsLive(false);
+		}
 		//threat ban dan
 		if ((m_CoutTime % 100) == 0) // sau 100 lan update
 		{
@@ -233,7 +254,7 @@ void GSPlay::Update(float deltaTime)
 				m_Character->SetIsLive(false);
 				m_Colision->Set2DPosition(m_ThreatBullets[i]->Get2DPosition().x, m_ThreatBullets[i]->Get2DPosition().y);
 				m_Colision->SetIsShow(true);
-				GameStateMachine::GetInstance()->ChangeState(StateTypes::STATE_End);
+				m_Character->SetIsLive(false);
 			}
 
 	}
