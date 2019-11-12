@@ -25,13 +25,14 @@ const GLint NUMENEMY = 6;
 
 GSPlay::GSPlay()
 {
+	m_CoutTime = 0;
 }
 
 
 GSPlay::~GSPlay()
 {
-	m_soloud.deinit();
-	m_soloud1.deinit();
+	//m_soloud.deinit();
+	//m_soloud1.deinit();
 }
 
 
@@ -66,10 +67,6 @@ void GSPlay::Init()
 	m_Character->SetSize(100, 70);
 
 	//Threat enemy one
-	//texture = texture = ResourceManagers::GetInstance()->GetTexture("ThreatOne");
-	/*m_Threat = std::make_shared<ThreatPlane>(model, shader, texture);
-	m_Threat->SetSize(150, 50);*/
-	//m_Threat->Set2DPosition(900, 25);
 	for (int i = 0; i < NUMENEMY; i++)
 	{
 		texture = texture = ResourceManagers::GetInstance()->GetTexture("ThreatOne");
@@ -191,7 +188,7 @@ void GSPlay::Update(float deltaTime)
 		m_MyBullets[i]->Update(deltaTime);
 		for (int j = 0; j < m_listThreatOne.size(); j++)
 		{
-			if (m_MyBullets[i]->CheckColision(m_listThreatOne[j]))
+			if (m_MyBullets[i]->CheckColision(m_listThreatOne[j])) //xu ly va cham cua dan myplane vs threatplane
 			{
 				int x = m_soloud1.play(m_explosionWav);
 				m_soloud1.setVolume(x, 2.0f);
@@ -211,6 +208,34 @@ void GSPlay::Update(float deltaTime)
 	{
 		m_listThreatOne[i]->Update(deltaTime);
 		m_listThreatOne[i]->SetRandPos(i);
+		//threat ban dan
+		if ((m_CoutTime % 100) == 0) // sau 100 lan update
+		{
+			for (int j = 0; j < m_ThreatBullets.size(); j++)
+			{
+				if (m_ThreatBullets[j]->GetIsLive() == false)
+				{
+					m_ThreatBullets[j]->SetIsLive(true);
+					m_ThreatBullets[j]->StartMove(m_listThreatOne[i]->Get2DPosition()+Vector2(-50,20));
+					break;
+				}
+			}
+		}
+	}
+	for (int i = 0; i < m_ThreatBullets.size(); i++)
+	{
+		m_ThreatBullets[i]->Update(deltaTime);
+		if (m_ThreatBullets[i]->CheckColision(m_Character)) //xu ly va cham cua dan ThreatPlane vs MyPlane
+			{
+				int x = m_soloud1.play(m_explosionWav);
+				m_soloud1.setVolume(x, 2.0f);
+				m_ThreatBullets[i]->SetIsLive(false);
+				m_Character->SetIsLive(false);
+				m_Colision->Set2DPosition(m_ThreatBullets[i]->Get2DPosition().x, m_ThreatBullets[i]->Get2DPosition().y);
+				m_Colision->SetIsShow(true);
+				GameStateMachine::GetInstance()->ChangeState(StateTypes::STATE_End);
+			}
+
 	}
 	//m_Threat->Update(deltaTime);
 	m_Colision->Update(deltaTime);
@@ -230,6 +255,7 @@ void GSPlay::Update(float deltaTime)
 	//point
 		std::string s = "Score: "+std::to_string(m_point);
 		m_score->SetText(s);
+		m_CoutTime++;
 }
 
 void GSPlay::Draw()
@@ -244,12 +270,15 @@ void GSPlay::Draw()
 	{
 		bul->Draw();
 	}
+	for (auto bul : m_ThreatBullets)
+	{
+		bul->Draw();
+	}
 	for (auto thr : m_listThreatOne)
 	{
 		if(thr->GetIsLive() == true)
 		thr->Draw();
 	}
-	//m_Threat->Draw();
 	m_score->Draw();
 	m_Character->Draw();
 	m_Character->SetMove(Vector2(0, 0));
@@ -286,9 +315,10 @@ void GSPlay::MakeThreatBullets()
 		auto shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
 		std::shared_ptr<Bullets> bul = std::make_shared<Bullets>(model, shader, texture);
 		bul->SetSize(15, 15);
-		bul->Set2DPosition(-10, -10);
+		bul->Set2DPosition(1024, 800);
+		bul->SetDir(bul->DIR_LEFT);
 		m_ThreatBullets.push_back(bul);
-		printf("makebull\n");
+		printf("makeThreatbull\n");
 	}
 }
 bool GSPlay::IsListAvailability(std::vector<std::shared_ptr<Bullets>> list)

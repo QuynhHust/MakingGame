@@ -36,12 +36,23 @@ void GSMenu::Init()
 		});
 	m_listButton.push_back(button);
 
-	//exit button
-	texture = ResourceManagers::GetInstance()->GetTexture("button_quit");
+	//credit button
+	texture = ResourceManagers::GetInstance()->GetTexture("button_credit");
 	button = std::make_shared<GameButton>(model, shader, texture);
 	button->Set2DPosition(screenWidth / 2, 300);
 	button->SetSize(200, 50);
 	button->SetOnClick([]() {
+		GameStateMachine::GetInstance()->ChangeState(StateTypes::STATE_Credit);
+	});
+	m_listButton.push_back(button);
+
+	//exit button
+	texture = ResourceManagers::GetInstance()->GetTexture("button_quit");
+	button = std::make_shared<GameButton>(model, shader, texture);
+	button->Set2DPosition(screenWidth / 2, 400);
+	button->SetSize(200, 50);
+	button->SetOnClick([]() {
+
 		exit(0);
 		});
 	m_listButton.push_back(button);

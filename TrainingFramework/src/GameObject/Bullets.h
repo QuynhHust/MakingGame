@@ -2,11 +2,6 @@
 #include"Sprite2D.h"
 class Bullets :public Sprite2D
 {
-
-private:
-	unsigned int m_BulletType;
-	unsigned int m_BulletDir;
-	Vector2 m_move;
 public:
 	Bullets(std::shared_ptr<Models> model, std::shared_ptr<Shaders> shader, std::shared_ptr<Texture> texture);
 	~Bullets();
@@ -26,6 +21,12 @@ public:
 	
 	void StartMove(Vector2 vec2 ) { Set2DPosition(vec2);}
 	void Update(GLfloat time) override;
+	void SetDir(BulletDir dir) { m_BulletDir = dir; }
+
+private:
+	unsigned int m_BulletType;
+	BulletDir m_BulletDir;
+	Vector2 m_move;
 	
 };
 
