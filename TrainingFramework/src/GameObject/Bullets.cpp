@@ -10,9 +10,9 @@ Bullets::Bullets(std::shared_ptr<Models> model, std::shared_ptr<Shaders> shader,
 	m_pShader = shader;
 	m_pCamera = nullptr;
 	m_pTexture = texture;
-	m_IsLive = true;
+	m_IsLive = false;
 	m_BulletType = DEFAULT;
-	m_BulletDir = 0;
+	m_BulletDir = DIR_RIGHT;
 	m_Vec2DPos = Vector2(-1, -1);
 
 	m_Vec3Position = Vector3(0, 0, 0);
@@ -27,11 +27,17 @@ Bullets::~Bullets()
 
 void Bullets::Update(GLfloat time)
 {
-	if (m_IsLive == true)
+	if ((m_IsLive == true) && (m_BulletDir == DIR_RIGHT))
 	{
 		m_Vec2DPos += Vector2(500.0f*time, 0.0f);
 		Set2DPosition(m_Vec2DPos);
-		if (m_Vec2DPos.x <= 50 || m_Vec2DPos.x >= screenWidth - 50) { m_IsLive = false; }
+		if (m_Vec2DPos.x >= screenWidth - 50) { m_IsLive = false; }
 	}
-	else Set2DPosition(-1, -1);
+	else if ((m_IsLive == true) && (m_BulletDir == DIR_LEFT))
+	{
+		m_Vec2DPos += Vector2(-500.0f*time, 0.0f);
+		Set2DPosition(m_Vec2DPos);
+		if (m_Vec2DPos.x <= 50) { m_IsLive = false; }
+	}
+	else Set2DPosition(-10, -10);
 }

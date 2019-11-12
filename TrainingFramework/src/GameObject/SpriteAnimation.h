@@ -3,9 +3,9 @@
 class SpriteAnimation : public BaseObject
 {
 private:
+	bool            m_IsShow;
 	std::string		m_Text;
 	void			CaculateWorldMatrix();
-	bool            m_IsShow;
 protected:
 	Vector2			m_Vec2DPos;
 	GLint			m_iHeight;

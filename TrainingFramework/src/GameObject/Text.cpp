@@ -115,6 +115,7 @@ void Text::Draw()
 
 void Text::Update(GLfloat deltatime)
 {
+	
 }
 
 
@@ -123,12 +124,10 @@ void Text::setFont(std::shared_ptr<Font> font)
 {
 	m_font = font;
 }
-
-void Text::setText(std::string text) {
+void Text::SetText(std::string text)
+{
 	m_text = text;
 }
-
-
 
 Vector4 Text::EnumToVector(TEXT_COLOR color)
 {

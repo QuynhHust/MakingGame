@@ -1,5 +1,7 @@
 #pragma once
 #include"Sprite2D.h"
+#include<stdlib.h>
+#include<time.h>
 
 class ThreatPlane : public Sprite2D
 {
@@ -17,6 +19,7 @@ public:
 	void SetTypeMove() { m_TypeMove = LEVELTWO; }
 	int GetCout() { return m_Cout; }
 	void SetCout(int i) { m_Cout = i; }
+	void SetRandPos(int i);
 
 	void Update(GLfloat time) override;
 private:

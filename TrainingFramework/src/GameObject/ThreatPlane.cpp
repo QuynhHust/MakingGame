@@ -8,7 +8,7 @@ ThreatPlane::ThreatPlane(std::shared_ptr<Models> model, std::shared_ptr<Shaders>
 {
 	m_pCamera = nullptr;
 	m_move = Vector2(0, 0);
-	m_IsLive = true;
+	m_IsLive = false;
 	m_TypeMove = LEVELONE;
 	m_Cout = 0;
 	m_Vec2DPos = Vector2(-200.0f, -200.0f);
@@ -31,15 +31,30 @@ void ThreatPlane::Update(GLfloat time)
 			m_move = Vector2(-200.0f, 0.0f)*time;
 			if (m_Vec2DPos.x < -75) { m_IsLive = false; m_move = Vector2(0.0f, 0.0f); }
 		}
-		else if (m_TypeMove == LEVELTWO)
+		/*else if (m_TypeMove == LEVELTWO)
 		{
 			if (m_Cout <= 100) { m_move = Vector2(-200.0f, 0.0f)*time; }
 			else if (100 < m_Cout&& m_Cout <= 500) { m_move = Vector2(-100.0f, 100.0f)*time; }
 			else if (500<m_Cout&&m_Cout<=900) { m_move = Vector2(-100.0f, -100.0f)*time; }
 			else m_Cout = 0;
-		}
+		}*/
 		m_Vec2DPos += m_move;
 		Set2DPosition(m_Vec2DPos);
 		m_Cout++;
+	}
+	else
+	{
+		//
+	}
+}
+
+void ThreatPlane::SetRandPos(int i)
+{
+	if (m_IsLive == false)
+	{
+		//srand((int)time(0));
+		m_Vec2DPos.x = 1075 + rand() % 500;
+		m_Vec2DPos.y =25 + rand()%475;
+		m_IsLive = true;
 	}
 }

@@ -24,7 +24,7 @@ public:
 	void		Draw() final;
 	void		Update(GLfloat deltatime) override;
 	void		setFont(std::shared_ptr<Font> font);
-	void		setText(std::string text);
+	void		SetText(std::string text);
 
 	void		Set2DPosition(GLfloat x, GLfloat y);
 	void		Set2DPosition(Vector2 pos);

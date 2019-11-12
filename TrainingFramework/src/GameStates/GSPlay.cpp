@@ -31,6 +31,7 @@ GSPlay::GSPlay()
 GSPlay::~GSPlay()
 {
 	m_soloud.deinit();
+	m_soloud1.deinit();
 }
 
 
@@ -54,7 +55,7 @@ void GSPlay::Init()
 	//text game title
 	shader = ResourceManagers::GetInstance()->GetShader("TextShader");
 	std::shared_ptr<Font> font = ResourceManagers::GetInstance()->GetFont("arialbd");
-	m_score = std::make_shared<Text>(shader, font, "score: 10", TEXT_COLOR::RED, 1.0);
+	m_score = std::make_shared<Text>(shader, font, "score: ", TEXT_COLOR::RED, 1.0);
 	m_score->Set2DPosition(Vector2(5, 25));
 
 	//main character
@@ -65,33 +66,44 @@ void GSPlay::Init()
 	m_Character->SetSize(100, 70);
 
 	//Threat enemy one
-	texture = texture = ResourceManagers::GetInstance()->GetTexture("ThreatOne");
-	threat = std::make_shared<ThreatPlane>(model, shader, texture);
-	threat->SetSize(150, 50);
-	threat->Set2DPosition(900, 25);
-	/*for (int i = 0; i < NUMENEMY; i++)
+	//texture = texture = ResourceManagers::GetInstance()->GetTexture("ThreatOne");
+	/*m_Threat = std::make_shared<ThreatPlane>(model, shader, texture);
+	m_Threat->SetSize(150, 50);*/
+	//m_Threat->Set2DPosition(900, 25);
+	for (int i = 0; i < NUMENEMY; i++)
 	{
-		m_listThreatOne.push_back(thr);
-	}*/
+		texture = texture = ResourceManagers::GetInstance()->GetTexture("ThreatOne");
+		m_Threat = std::make_shared<ThreatPlane>(model, shader, texture);
+		m_Threat->SetSize(150, 50);
+		m_Threat->SetRandPos(i + 1);
+		m_listThreatOne.push_back(m_Threat);
+	}
 
 	//animation coin
 	texture = ResourceManagers::GetInstance()->GetTexture("coin1");
 	shader = ResourceManagers::GetInstance()->GetShader("Animation");
 	std::shared_ptr<SpriteAnimation> obj = std::make_shared<SpriteAnimation>(model, shader, texture, 6, 0.1f);
-	obj->Set2DPosition(150, 30);
-	obj->SetSize(52, 52);
+	obj->Set2DPosition(130, 18);
+	obj->SetSize(26, 26);
+	obj->SetIsShow(true);
 	m_listAnimation.push_back(obj);
-	//animation colision
-	texture = ResourceManagers::GetInstance()->GetTexture("Explosion");
-	m_Colision = std::make_shared<SpriteAnimation>(model, shader, texture, 5, 0.1f);
-	m_Colision->SetSize(70,70);
 
-	// Bullets
-	MakeBullets();
+	//animation colision
+	texture = ResourceManagers::GetInstance()->GetTexture("explosion2");
+	shader = ResourceManagers::GetInstance()->GetShader("Animation");
+	m_Colision = std::make_shared<SpriteAnimation>(model, shader, texture, 10, 0.05f);
+	m_Colision->SetSize(96,88);
+
+	// myBullets
+	MakeMyBullets();
+	// ThreatBullets
+	MakeThreatBullets();
 
 	//sound game
 	m_soloud.init();
 	m_wav.load("shot.wav");
+	m_soloud1.init();
+	m_explosionWav.load("colision.wav");
 }
 
 void GSPlay::Exit()
@@ -152,12 +164,12 @@ void GSPlay::HandleTouchEvents(int x, int y, bool bIsPressed)
 {
 	if(bIsPressed)
 	{
-		for (int i = 0; i < m_listBullets.size(); i++)
+		for (int i = 0; i < m_MyBullets.size(); i++)
 		{
-			if (m_listBullets.at(i)->GetIsLive() == false)
+			if (m_MyBullets.at(i)->GetIsLive() == false)
 			{
-				m_listBullets.at(i)->SetIsLive(true);
-				m_listBullets.at(i)->StartMove(m_Character->Get2DPosition());
+				m_MyBullets.at(i)->SetIsLive(true);
+				m_MyBullets.at(i)->StartMove(m_Character->Get2DPosition());
 				int x = m_soloud.play(m_wav);
 				m_soloud.setVolume(x, 1.0f);
 				break;
@@ -172,21 +184,35 @@ void GSPlay::Update(float deltaTime)
 	for (auto obj : m_listAnimation)
 	{
 		obj->Update(deltaTime);
+		obj->SetIsShow(true);
 	}
-	for (int i = 0; i < m_listBullets.size(); i++)
+	for (int i = 0; i < m_MyBullets.size(); i++)
 	{
-		m_listBullets[i]->Update(deltaTime);
-		if (m_listBullets[i]->CheckColision(threat))
+		m_MyBullets[i]->Update(deltaTime);
+		for (int j = 0; j < m_listThreatOne.size(); j++)
 		{
-			m_listBullets[i]->SetIsLive(false);
-			threat->SetIsLive(false);
-			m_Colision->Set2DPosition(m_listBullets[i]->Get2DPosition().x, m_listBullets[i]->Get2DPosition().y);
-			m_Colision->SetIsShow(true);
+			if (m_MyBullets[i]->CheckColision(m_listThreatOne[j]))
+			{
+				int x = m_soloud1.play(m_explosionWav);
+				m_soloud1.setVolume(x, 2.0f);
+				m_MyBullets[i]->SetIsLive(false);
+				m_listThreatOne[j]->SetIsLive(false);
+				m_Colision->Set2DPosition(m_MyBullets[i]->Get2DPosition().x, m_MyBullets[i]->Get2DPosition().y);
+				m_Colision->SetIsShow(true);
+				m_point++;
+			}
 		}
+		
 	}
-	MakeBullets();
+	MakeMyBullets();
+	MakeThreatBullets();
 	m_Character->Update(deltaTime);
-	threat->Update(deltaTime);
+	for (int i = 0;i<m_listThreatOne.size();i++)
+	{
+		m_listThreatOne[i]->Update(deltaTime);
+		m_listThreatOne[i]->SetRandPos(i);
+	}
+	//m_Threat->Update(deltaTime);
 	m_Colision->Update(deltaTime);
 
 	//move background
@@ -201,7 +227,9 @@ void GSPlay::Update(float deltaTime)
 		m_BackGround2->Set2DPosition((GLfloat)(2 * screenWidth) + m_BackGround2->Get2DPosition().x, (GLfloat)(screenHeight / 2));
 	}
 	    m_BackGround2->Set2DPosition(m_BackGround2->Get2DPosition() - Vector2(100.0f, 0.0f)*deltaTime);
-	
+	//point
+		std::string s = "Score: "+std::to_string(m_point);
+		m_score->SetText(s);
 }
 
 void GSPlay::Draw()
@@ -212,18 +240,19 @@ void GSPlay::Draw()
 	{
 		obj->Draw();
 	}
-	for (auto bul : m_listBullets)
+	for (auto bul : m_MyBullets)
 	{
 		bul->Draw();
 	}
 	for (auto thr : m_listThreatOne)
 	{
+		if(thr->GetIsLive() == true)
 		thr->Draw();
 	}
+	//m_Threat->Draw();
 	m_score->Draw();
 	m_Character->Draw();
 	m_Character->SetMove(Vector2(0, 0));
-	threat->Draw();
 	if (m_Colision->GetIsShow() == true)
 	{
 		m_Colision->Draw();
@@ -234,17 +263,31 @@ void GSPlay::SetNewPostionForBullet()
 {
 
 }
-void GSPlay::MakeBullets()
+void GSPlay::MakeMyBullets()
 {
-	if(IsListAvailability(m_listBullets)==false)//neu listbull khong kha dung
+	if(IsListAvailability(m_MyBullets)==false)//neu listbull khong kha dung
 	{
 		auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D");
 		auto texture = ResourceManagers::GetInstance()->GetTexture("Bullet");
 		auto shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
 		std::shared_ptr<Bullets> bul = std::make_shared<Bullets>(model, shader, texture);
 		bul->SetSize(15, 15);
-		bul->Set2DPosition(-1, -1);
-		m_listBullets.push_back(bul);
+		bul->Set2DPosition(-10, -10);
+		m_MyBullets.push_back(bul);
+		printf("makebull\n");
+	}
+}
+void GSPlay::MakeThreatBullets()
+{
+	if (IsListAvailability(m_ThreatBullets) == false)//neu listbull khong kha dung
+	{
+		auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D");
+		auto texture = ResourceManagers::GetInstance()->GetTexture("Bullet");
+		auto shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
+		std::shared_ptr<Bullets> bul = std::make_shared<Bullets>(model, shader, texture);
+		bul->SetSize(15, 15);
+		bul->Set2DPosition(-10, -10);
+		m_ThreatBullets.push_back(bul);
 		printf("makebull\n");
 	}
 }

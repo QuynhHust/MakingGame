@@ -120,13 +120,19 @@ void SpriteAnimation::Draw()
 
 void SpriteAnimation::Update(GLfloat deltatime)
 {
-	m_currentTime += deltatime;
-	if (m_currentTime >= m_frameTime)
+	if (m_IsShow == true)
 	{
-		m_currentFrame++;
-		if (m_currentFrame >= m_numFrames)
-			m_currentFrame = 0;
-		m_currentTime -= m_frameTime;
+		m_currentTime += deltatime;
+		if (m_currentTime >= m_frameTime)
+		{
+			m_currentFrame++;
+			if (m_currentFrame >= m_numFrames)
+			{
+				m_currentFrame = 0;
+				m_IsShow = false;
+			}
+			m_currentTime -= m_frameTime;
+		}
 	}
 }
 
